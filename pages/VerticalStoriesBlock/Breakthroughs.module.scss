@@ -1,0 +1,143 @@
+.breakthroughsContainer {
+  margin-bottom: calc(1.5 * var(--measure-block-margin));
+  display: flex;
+
+  .verticalBar {
+    margin-right: 5rem;
+    margin-left: 7rem;
+    display: flex;
+    flex-direction: column;
+
+    p {
+      width: 2px;
+      flex: 1;
+      background-color: rgb(219, 219, 219);
+      margin: 0 1.3rem;
+    }
+    p.active {
+      background-color: var(--color-midnight-blue);
+    }
+    position: relative;
+    .left,
+    .right,
+    .currentPage,
+    .totalPages {
+      position: absolute;
+    }
+    .left,
+    .right {
+      top: 10%;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .left {
+      left: 0;
+    }
+    .right {
+      right: 0;
+    }
+    .currentPage,
+    .totalPages {
+      bottom: 10%;
+    }
+    .currentPage {
+      left: 0;
+    }
+
+    .totalPages {
+      right: 0;
+    }
+  }
+  .breakthroughs {
+    // background-color: red;
+    // overflow: hidden;
+    flex: 1;
+    display: flex;
+    cursor: none;
+    user-select: none;
+    position: relative;
+    .customCursor {
+      z-index: 100;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 70px;
+      height: 70px;
+      background-color: var(--color-purple);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.8rem;
+      transform: translate(-50%, -50%);
+    }
+
+    .details {
+      flex: 50%;
+      .companyContainer {
+        position: relative;
+        overflow: hidden;
+        height: calc(2rem + 50px);
+        padding: 1rem 0;
+        width: 100%;
+        .company {
+          position: absolute;
+          img {
+            height: 50px;
+          }
+        }
+      }
+      .textContainer {
+        position: relative;
+        .text {
+          position: absolute;
+          .head {
+            font-size: 1.7rem;
+            padding: 3rem 0;
+            width: 80%;
+          }
+          .help {
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+          }
+          .info {
+            color: var(--color-midnight-blue);
+            padding: 1rem 0;
+          }
+          .button {
+            position: relative;
+            top: 2rem;
+            border-radius: 5rem;
+            padding: 0.8rem 1.7rem;
+            font-size: 0.7rem;
+            font-weight: bold;
+            transition: all 300ms ease;
+            background-color: var(--color-midnight-blue);
+            color: white;
+            display: inline-block;
+            &:hover {
+              cursor: pointer;
+              transform: scale(1.1);
+              background-color: #150b41d7;
+            }
+          }
+        }
+      }
+    }
+
+    .imageContainer {
+      display: flex;
+      flex: 50%;
+      position: relative;
+      height: 80vh;
+      overflow: hidden;
+      img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

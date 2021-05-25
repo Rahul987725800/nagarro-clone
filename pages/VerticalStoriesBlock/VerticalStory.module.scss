@@ -1,0 +1,29 @@
+.verticalStoryBlock {
+  position: relative;
+  --text-size: 3.2rem;
+
+  .dark {
+    background-color: var(--color-midnight-blue);
+    padding: var(--measeure-block-padding);
+    font-size: var(--text-size);
+    color: var(--color-green);
+    .staticText {
+      color: white;
+    }
+  }
+  .light {
+    .textContainer {
+      padding: calc(1.5 * var(--measure-block-margin))
+        calc(2 * var(--measure-block-margin));
+      .floor {
+        font-size: var(--text-size);
+        visibility: hidden;
+      }
+      .text {
+        width: 65%;
+        color: var(--text-color-light);
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

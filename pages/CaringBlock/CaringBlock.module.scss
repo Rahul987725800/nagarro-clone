@@ -1,0 +1,72 @@
+.caringBlock {
+  padding: var(--measeure-block-padding);
+  background-color: var(--color-dark-blue);
+  display: flex;
+
+  .left {
+    flex: 50%;
+    // background-color: red;
+    position: relative;
+    --text-size: 3.2rem;
+    font-size: var(--text-size);
+
+    .greenText {
+      color: var(--color-green);
+    }
+    .movable {
+      color: white;
+      font-size: 2.5rem;
+    }
+    .movableFloor {
+      font-size: 2.5rem;
+      position: absolute;
+      bottom: 0;
+      visibility: hidden;
+    }
+  }
+  .right {
+    flex: 50%;
+    .container {
+      width: 65%;
+      margin: auto;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.15);
+      border-radius: 100rem;
+      padding: 5rem 3rem;
+      .block {
+        margin-top: 3rem;
+        .head {
+          font-size: 2rem;
+          color: var(--color-green);
+        }
+        .text {
+          color: white;
+          font-size: 0.9rem;
+          margin: 1rem 0;
+        }
+        .button {
+          width: max-content;
+          margin: 2rem auto;
+          border-radius: 5rem;
+          padding: 0.8rem 1.7rem;
+          font-size: 0.7rem;
+          font-weight: bold;
+          transition: all 300ms ease;
+          background-color: white;
+          color: var(--text-color);
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+            background-color: var(--color-green);
+            color: white;
+          }
+        }
+      }
+      .divider {
+        height: 1px;
+        background-color: white;
+        margin-top: 3rem;
+      }
+    }
+  }
+}

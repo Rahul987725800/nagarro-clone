@@ -1,16 +1,130 @@
 html,
 body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+:root {
+  --text-color: #001430;
+  --text-color-light: rgb(117, 117, 117);
+  --color-light-gray: rgb(236, 236, 236);
+  --color-mid-gray: rgb(192, 192, 192);
+  --color-purple: #2e008b;
+  --color-dark-blue: #13294b;
+  --color-green: #47d7ac;
+  --color-midnight-blue: #13294b;
+  --measure-block-margin: 4rem;
+  --measure-block-width: 75%;
+  --measeure-block-padding: calc(1.5 * var(--measure-block-margin))
+    calc(2 * var(--measure-block-margin));
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.language-select-enter {
+  opacity: 0;
+}
+.language-select-enter-active {
+  opacity: 1;
+  transition: all 300ms ease;
 }
 
-* {
-  box-sizing: border-box;
+.language-select-exit-active {
+  opacity: 0;
+  transition: all 300ms ease;
+}
+.modal-enter {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.modal-enter-active {
+  transform: scaleY(1);
+  transition: all 300ms ease;
+}
+.modal-exit {
+  transform: scaleY(1);
+  transform-origin: top;
+}
+.modal-exit-active {
+  transform: scaleY(0);
+  transition: all 300ms ease;
+}
+.swipe-story-left-enter {
+  transform: translateX(100%);
+}
+.swipe-story-left-enter-active {
+  transform: translateX(0);
+  transition: all 300ms ease;
+}
+.swipe-story-right-enter {
+  transform: translateX(-100%);
+}
+.swipe-story-right-enter-active {
+  transform: translateX(0);
+  transition: all 300ms ease;
+}
+.navbar-enter {
+  transform: translateY(-100%);
+}
+.navbar-enter-active {
+  transform: translateY(0);
+  transition: all 300ms ease;
+}
+.navbar-exit {
+  transform: translateY(0);
+}
+.navbar-exit-active {
+  transform: translateY(-100%);
+  transition: all 300ms ease;
+}
+.swipe-vertical-story-company-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.swipe-vertical-story-company-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 300ms ease;
+}
+.swipe-vertical-story-company-exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+.swipe-vertical-story-company-exit-active {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all 300ms ease;
+}
+.swipe-vertical-story-image-left-enter {
+  transform: translateX(100%);
+}
+.swipe-vertical-story-image-left-enter-active {
+  transform: translateX(0);
+  transition: all 300ms ease;
+}
+.swipe-vertical-story-image-right-enter {
+  transform: translateX(-100%);
+}
+.swipe-vertical-story-image-right-enter-active {
+  transform: translateX(0);
+  transition: all 300ms ease;
+}
+.swipe-vertical-story-info-enter {
+  opacity: 0;
+}
+.swipe-vertical-story-info-enter-active {
+  opacity: 1;
+  transition: all 300ms ease;
+}
+.swipe-vertical-story-info-exit {
+  opacity: 1;
+}
+.swipe-vertical-story-info-exit-active {
+  opacity: 0;
+  transition: all 300ms ease;
 }

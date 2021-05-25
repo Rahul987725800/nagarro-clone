@@ -1,0 +1,38 @@
+.container {
+  user-select: none;
+  position: relative;
+  .story {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .bars {
+    position: absolute;
+    top: 84vh;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    .bar {
+      --color: var(--color-mid-gray);
+      color: var(--color);
+      width: 220px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      &.active {
+        --color: white;
+      }
+      .index {
+      }
+      .line {
+        border-top: 1px solid var(--color);
+        margin: 0.8rem 0;
+      }
+      .text {
+      }
+    }
+  }
+}
