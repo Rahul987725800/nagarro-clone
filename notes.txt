@@ -1,0 +1,15 @@
+ useEffect(() => {
+    const ceilTopOffset = getOffsetTop(ceilRef.current);
+    const floorTopOffset = getOffsetTop(floorRef.current);
+    const maxDistance = floorTopOffset - ceilTopOffset;
+    window.addEventListener('scroll', (e) => {
+      const movableTopOffset = getOffsetTop(movableTextRef.current);
+      const distance = movableTopOffset - ceilTopOffset;
+      console.log(distance);
+      // console.log(movableTopOffset);
+      // console.log(ceilTopOffset);
+      if (distance >= 0 && distance <= maxDistance) {
+        movableTextRef.current.style.top = `${distance}px`;
+      }
+    });
+  }, []);

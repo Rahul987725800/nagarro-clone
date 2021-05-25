@@ -9,12 +9,7 @@ function getOffsetTop(elem) {
   } while ((elem = elem.offsetParent));
   return offsetTop;
 }
-function closerToFirst(val, c1, c2) {
-  if (Math.abs(val - c1) < Math.abs(val - c2)) {
-    return true;
-  }
-  return false;
-}
+
 function MovableText({ children, floorRef }) {
   const movableTextRef = useRef();
   const ceilRef = useRef();
@@ -40,19 +35,16 @@ function MovableText({ children, floorRef }) {
       }
       if (move) {
         const movableTopOffset = getOffsetTop(movableTextRef.current);
-        if (
-          movableTopOffset >= ceilTopOffset &&
-          movableTopOffset - 40 <= floorTopOffset
-          // movableTopOffset is not calculated accurately it is becoming more than floorTopOffset
-        ) {
-          movableTextRef.current.style.top = `${window.scrollY - start}px`;
-        } else {
-          if (closerToFirst(movableTopOffset, ceilTopOffset, floorTopOffset)) {
-            movableTextRef.current.style.top = `0px`;
-          } else {
-            movableTextRef.current.style.top = `${distance}px`;
-          }
+        if (movableTopOffset < ceilTopOffset) {
+          movableTextRef.current.style.top = `0px`;
           move = false;
+        } else if (movableTopOffset > floorTopOffset) {
+          movableTextRef.current.style.top = `${distance - 40}px`;
+          movableTextRef.current.style.transform = `translateY(${40}px)`;
+          move = false;
+        } else {
+          movableTextRef.current.style.top = `${window.scrollY - start}px`;
+          movableTextRef.current.style.transform = `translateY(${0}px)`;
         }
       }
     });
