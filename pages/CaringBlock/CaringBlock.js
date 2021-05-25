@@ -5,13 +5,9 @@ import styles from './CaringBlock.module.scss';
 function CaringBlock() {
   const deliverFloorRef = useRef();
   const responsibleFloorRef = useRef();
-  const itFloorRef = useRef();
-  const [deliverReachedFloor, setDeliverReachedFloor] = useState(false);
+  const responsibleTopRef = useRef();
+  const [responsibleMoving, setResponsibleMoving] = useState(false);
   const [responsibleReachedFloor, setResponsibleReachedFloor] = useState(false);
-  useEffect(() => {
-    console.log('reached');
-    console.log(deliverReachedFloor);
-  }, [deliverReachedFloor]);
   return (
     <div className={styles.caringBlock}>
       <div className={styles.firstPart}>
@@ -20,26 +16,24 @@ function CaringBlock() {
             <p>We care.</p>
             <p>Caring is our superpower.</p>
           </div>
-          <MovableText
-            floorRef={deliverFloorRef}
-            setReachedFloor={setDeliverReachedFloor}
-          >
-            <div className={styles.movable}>
-              {deliverReachedFloor ? (
-                <MovableText
-                  floorRef={responsibleFloorRef}
-                  mustStartMove
-                  addToTop={deliverReachedFloor}
-                >
-                  it
-                </MovableText>
-              ) : (
-                <span>it</span>
-              )}
-              &nbsp;drives us to deliver <br />
-              &emsp; excellence to our clients
-            </div>
-          </MovableText>
+          <div style={{ display: 'flex' }}>
+            <MovableText floorRef={responsibleTopRef}>
+              <span
+                className={styles.movable}
+                style={{
+                  visibility: responsibleMoving ? 'hidden' : 'visible',
+                }}
+              >
+                it
+              </span>
+            </MovableText>
+            <MovableText floorRef={deliverFloorRef}>
+              <span className={styles.movable}>
+                &nbsp;drives us to deliver <br />
+                &emsp; excellence to our clients
+              </span>
+            </MovableText>
+          </div>
           <div className={styles.movableFloor} ref={deliverFloorRef}>
             it drives us to deliver <br />
             &emsp; excellence to our clients
@@ -72,12 +66,23 @@ function CaringBlock() {
         <div className={styles.left}>
           <MovableText
             floorRef={responsibleFloorRef}
+            setMoving={setResponsibleMoving}
             setReachedFloor={setResponsibleReachedFloor}
           >
-            <div className={styles.movable}>
-              it makes us <br />
+            <span className={styles.movable} ref={responsibleTopRef}>
+              <span
+                style={{
+                  visibility:
+                    responsibleMoving || responsibleReachedFloor
+                      ? 'visible'
+                      : 'hidden',
+                }}
+              >
+                it
+              </span>{' '}
+              makes us <br />
               responsible
-            </div>
+            </span>
           </MovableText>
           <div className={styles.movableFloor} ref={responsibleFloorRef}>
             it makes us <br />

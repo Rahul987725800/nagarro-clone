@@ -29,6 +29,7 @@ function MovableText({
     let start;
     let move = false;
     window.addEventListener('scroll', (e) => {
+      if (!addToTop) return;
       if (!movableTextRef.current || !ceilRef.current || !floorRef.current)
         return;
       const ceilTextPos = ceilRef.current.getBoundingClientRect();
@@ -48,7 +49,7 @@ function MovableText({
         move = true;
       }
 
-      if (move && addToTop) {
+      if (move) {
         const movableTopOffset = getOffsetTop(movableTextRef.current);
         if (movableTopOffset < ceilTopOffset) {
           movableTextRef.current.style.top = `0px`;
