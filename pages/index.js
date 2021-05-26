@@ -57,7 +57,9 @@ export default function Home() {
           <BlogCard />
         </div>
         <div className={styles.more}>
-          <ArrowLink />
+          <ArrowLink dark width={190} hoveredWidth={200} arrowPadding="1rem">
+            View more insights
+          </ArrowLink>
         </div>
       </div>
       <div className={styles.eventsBlock}>

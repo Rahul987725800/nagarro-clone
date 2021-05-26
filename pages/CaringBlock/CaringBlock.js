@@ -1,11 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
+import ArrowLink from '../../components/Shared/ArrowLink';
 import CustomImage from '../../components/Shared/CustomImage';
 import MovableText from '../../components/Shared/MovableText';
 import styles from './CaringBlock.module.scss';
+
 function CaringBlock() {
+  const videoRef = useRef();
+  useEffect(() => {
+    videoRef.current.addEventListener('ended', function () {
+      this.currentTime = 0;
+      this.play();
+    });
+    videoRef.current.play();
+  }, []);
   const deliverFloorRef = useRef();
   const responsibleFloorRef = useRef();
   const responsibleTopRef = useRef();
+  const colleaugesFloorRef = useRef();
   const [responsibleMoving, setResponsibleMoving] = useState(false);
   const [responsibleReachedFloor, setResponsibleReachedFloor] = useState(false);
   return (
@@ -64,6 +75,12 @@ function CaringBlock() {
       </div>
       <div className={styles.secondPart}>
         <div className={styles.left}>
+          <div className={styles.manSvg}>
+            <img
+              src="https://www.nagarro.com/hubfs/NagarroWebsiteRedesign-Aug2020/Assets/Images/Caring_responsible_background.svg"
+              alt=""
+            />
+          </div>
           <MovableText
             floorRef={responsibleFloorRef}
             setMoving={setResponsibleMoving}
@@ -105,6 +122,44 @@ function CaringBlock() {
               imgSrc="https://www.nagarro.com/hs-fs/hubfs/Nagarro-March2018-Theme/TestingPro_Banner%20(2).jpg?width=720&height=720&name=TestingPro_Banner%20(2).jpg"
               description="Autism - movie stereotypes vs. real-life experiences"
             />
+          </div>
+          <div className={styles.link}>
+            <ArrowLink width={350} hoveredWidth={370}>
+              discover how we're creating a better world
+            </ArrowLink>
+          </div>
+        </div>
+      </div>
+      <div className={styles.thirdPart}>
+        <video
+          ref={videoRef}
+          src="https://www.nagarro.com/hubfs/NagarroWebsiteRedesign-Aug2020/Assets/Videos/home_careers-1.mp4"
+          className={styles.video}
+        ></video>
+        <div className={styles.firstHalf}>
+          <MovableText floorRef={colleaugesFloorRef}>
+            <div className={styles.movable}>it makes us better colleagues</div>
+          </MovableText>
+          <div className={styles.movableFloor} ref={colleaugesFloorRef}>
+            it makes us better colleagues
+          </div>
+        </div>
+        <div className={styles.secondHalf}>
+          <div className={styles.head}>We are a Nation of Nagarrians</div>
+          <p className={styles.para}>
+            We are not trying to emulate the companies of yesterday, we are the
+            company of tomorrow. We are the future, logistically apart, together
+            always.
+          </p>
+          <div className={styles.quest}>
+            Think you have what it takes <br /> to be a Nagarrian?
+          </div>
+          <div className={styles.bottomBlock}>
+            <p className={styles.colored}>
+              Discover the oppurtunities waiting for you
+            </p>
+            <p className={styles.line}></p>
+            <p className={styles.button}>Make the jump</p>
           </div>
         </div>
       </div>

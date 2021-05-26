@@ -22,7 +22,7 @@ body {
   --color-midnight-blue: #13294b;
   --measure-block-margin: 4rem;
   --measure-block-width: 75%;
-  --measeure-block-padding: calc(1.5 * var(--measure-block-margin))
+  --measure-block-padding: calc(1.5 * var(--measure-block-margin))
     calc(2 * var(--measure-block-margin));
 }
 

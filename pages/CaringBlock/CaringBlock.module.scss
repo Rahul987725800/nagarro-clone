@@ -1,5 +1,22 @@
 .caringBlock {
   --text-size: 3.2rem;
+  .button {
+    width: max-content;
+    margin: 2rem auto;
+    border-radius: 5rem;
+    padding: 0.8rem 1.7rem;
+    font-size: 0.7rem;
+    font-weight: bold;
+    transition: all 300ms ease;
+    background-color: white;
+    color: var(--text-color);
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+      background-color: var(--color-green);
+      color: white;
+    }
+  }
   .movable {
     color: white;
     font-size: 2.5rem;
@@ -8,10 +25,10 @@
     font-size: 2.5rem;
     position: absolute;
     bottom: 0;
-    visibility: hidden;
+    // visibility: hidden;
   }
   .firstPart {
-    padding: var(--measeure-block-padding);
+    padding: var(--measure-block-padding);
     background-color: var(--color-dark-blue);
     display: flex;
     .left {
@@ -45,23 +62,6 @@
             font-size: 0.9rem;
             margin: 1rem 0;
           }
-          .button {
-            width: max-content;
-            margin: 2rem auto;
-            border-radius: 5rem;
-            padding: 0.8rem 1.7rem;
-            font-size: 0.7rem;
-            font-weight: bold;
-            transition: all 300ms ease;
-            background-color: white;
-            color: var(--text-color);
-            &:hover {
-              cursor: pointer;
-              transform: scale(1.1);
-              background-color: var(--color-green);
-              color: white;
-            }
-          }
         }
         .divider {
           height: 1px;
@@ -72,12 +72,20 @@
     }
   }
   .secondPart {
-    padding: var(--measeure-block-padding);
+    padding: 8rem calc(2 * var(--measure-block-margin));
     background-color: var(--color-purple);
     display: flex;
     .left {
       flex: 50%;
       position: relative;
+      .manSvg {
+        position: absolute;
+        img {
+          margin-left: 7rem;
+          margin-top: 2rem;
+          width: 350px;
+        }
+      }
     }
     .right {
       flex: 50%;
@@ -110,6 +118,82 @@
               margin: 1rem;
             }
           }
+          &:hover {
+            cursor: pointer;
+            .description {
+              text-decoration: underline;
+            }
+            img {
+              transition: all 300ms ease;
+              transform: scale(1.1);
+            }
+          }
+        }
+      }
+      .link {
+        margin-top: 3rem;
+      }
+    }
+  }
+  .thirdPart {
+    // background-color: black;
+
+    position: relative;
+    .video {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .firstHalf {
+      padding: 10rem calc(2 * var(--measure-block-margin));
+      height: 500px;
+      position: relative;
+      .movableFloor {
+        bottom: 10rem;
+      }
+    }
+    .secondHalf {
+      padding: 8rem calc(2 * var(--measure-block-margin));
+      background-color: #13294b8f;
+      color: white;
+      .head {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+      .para {
+        text-align: center;
+        width: 60%;
+        margin: auto;
+      }
+      .quest {
+        margin-top: 100px;
+        font-size: 1.7rem;
+      }
+      .bottomBlock {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .colored {
+          color: var(--color-green);
+          font-size: 1.3rem;
+          width: 300px;
+        }
+        .line {
+          margin-left: 2.5rem;
+          transform: rotate(-1deg);
+          border-top: 3px solid white;
+          width: 400px;
+          border-radius: 100px/100% 0 0 0;
+        }
+        .button {
+          width: 250px;
+          text-align: center;
+          margin-left: 1.5rem;
         }
       }
     }

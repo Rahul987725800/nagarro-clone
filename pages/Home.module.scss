@@ -14,7 +14,7 @@
 }
 
 .insightsBlock {
-  padding: var(--measeure-block-padding);
+  padding: var(--measure-block-padding);
   display: flex;
   flex-direction: column;
 
@@ -25,12 +25,12 @@
     gap: 1.5rem;
   }
   .more {
-    align-self: flex-end;
+    margin-left: 85%;
     margin-top: var(--measure-block-margin);
   }
 }
 .eventsBlock {
-  padding: var(--measeure-block-padding);
+  padding: var(--measure-block-padding);
   .events {
     display: flex;
     margin: var(--measure-block-margin) 0;
