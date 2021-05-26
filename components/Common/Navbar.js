@@ -12,6 +12,14 @@ import Contact from './NavigationTypes/Contact';
 import LogoDarkIcon from '../../public/logoDark.svg';
 import LogoIcon from '../../public/logo.svg';
 import { NavbarStateContext } from '../../state/navbarState';
+const navTypes = [
+  <Industries />,
+  <Services />,
+  <InsightsEvents />,
+  <About />,
+  <Careers />,
+  <Contact />,
+];
 function Navbar() {
   const { navbarThemeIsLight, setNavbarTheme } = useContext(NavbarStateContext);
   const [selectingLanguage, setSelectingLanguage] = useState(false);
@@ -19,6 +27,15 @@ function Navbar() {
   const [prevActiveChild, setPrevActiveChild] = useState();
   const [showNavbar, setShowNavbar] = useState(true);
   const [navFixed, setNavFixed] = useState(false);
+  const navTimeoutRef = useRef();
+  const [lightThemeIsActive, setLightThemeIsActive] = useState();
+  useEffect(() => {
+    if (activeChild !== -1 || navbarThemeIsLight) {
+      setLightThemeIsActive(true);
+    } else {
+      setLightThemeIsActive(false);
+    }
+  }, [activeChild, navbarThemeIsLight]);
   useEffect(() => {
     window.onscroll = (e) => {
       // console.log(e);
@@ -36,30 +53,51 @@ function Navbar() {
       }
     };
   }, []);
-  const properties = (index) => ({
-    onMouseEnter: () =>
-      setActiveChild(() => {
-        switch (index) {
-          case 0:
-            return <Industries />;
-          case 1:
-            return <Services />;
-          case 2:
-            return <InsightsEvents />;
-          case 3:
-            return <About />;
-          case 4:
-            return <Careers />;
-          case 5:
-            return <Contact />;
-          default:
-            return null;
-        }
-      }),
-    onMouseLeave: () => setActiveChild(null),
-  });
+  function Wrapper({ children }) {
+    return (
+      <div
+        onMouseEnter={() => {
+          // console.log('in wrapper');
+          clearTimeout(navTimeoutRef.current);
+        }}
+        onMouseLeave={() => {
+          // console.log('leave wrapper');
+          navTimeoutRef.current = setTimeout(() => {
+            setActiveChild(-1);
+          }, 500);
+        }}
+      >
+        {children}
+      </div>
+    );
+  }
+
+  const properties = (index) => {
+    let style = {
+      color: lightThemeIsActive ? 'var(--text-color)' : 'white',
+    };
+    if (activeChild !== -1) {
+      style = {
+        ...style,
+        color:
+          activeChild === index ? 'var(--text-color)' : 'var(--color-mid-gray)',
+      };
+    }
+    return {
+      onMouseEnter: () => {
+        clearTimeout(navTimeoutRef.current);
+        setActiveChild(index);
+      },
+      onMouseLeave: () => {
+        navTimeoutRef.current = setTimeout(() => {
+          setActiveChild(-1);
+        }, 500);
+      },
+      style,
+    };
+  };
   useEffect(() => {
-    if (activeChild) {
+    if (activeChild !== -1) {
       setPrevActiveChild(activeChild);
     }
   }, [activeChild]);
@@ -71,22 +109,20 @@ function Navbar() {
       unmountOnExit
     >
       <div
-        className={[
-          styles.container,
-          navbarThemeIsLight ? styles.light : styles.dark,
-        ].join(' ')}
+        className={styles.container}
         style={{
           position: navFixed ? 'fixed' : 'absolute',
+          backgroundColor: lightThemeIsActive ? 'white' : 'transparent',
         }}
       >
         <nav className={styles.nav} onClick={() => setSelectingLanguage(false)}>
           <div className={styles.logo}>
-            {navbarThemeIsLight ? <LogoDarkIcon /> : <LogoIcon />}
+            {lightThemeIsActive ? <LogoDarkIcon /> : <LogoIcon />}
           </div>
           <div
             className={styles.line}
             style={{
-              backgroundColor: navbarThemeIsLight
+              backgroundColor: lightThemeIsActive
                 ? 'var(--color-light-gray)'
                 : 'white',
             }}
@@ -106,6 +142,9 @@ function Navbar() {
                 onClick={(e) => {
                   setSelectingLanguage(true);
                   e.stopPropagation();
+                }}
+                style={{
+                  color: lightThemeIsActive ? 'var(--text-color)' : 'white',
                 }}
               >
                 en
@@ -130,10 +169,12 @@ function Navbar() {
         <CSSTransition
           classNames="modal"
           timeout={300}
-          in={!!activeChild}
+          in={activeChild !== -1}
           unmountOnExit
         >
-          <div className={styles.modal}>{prevActiveChild}</div>
+          <div className={styles.modal}>
+            <Wrapper>{navTypes[prevActiveChild]}</Wrapper>
+          </div>
         </CSSTransition>
       </div>
     </CSSTransition>

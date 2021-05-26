@@ -34,9 +34,9 @@ export default function Home() {
       <div className={styles.eventsBlock}>
         <div className={styles.title}>featured events</div>
         <div className={styles.events}>
-          <div className={styles.block} style={{ minWidth: '60%' }}>
+          <div className={styles.block} style={{ minWidth: '58%' }}>
             <div className={styles.image}>
-              <CustomImage src="/phone.webp" />
+              <img src="/phone.webp" />
             </div>
             <div className={styles.content}>
               <p className={styles.date}>Virtual Event | May 26</p>

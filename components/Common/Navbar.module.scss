@@ -1,14 +1,6 @@
 .container {
   width: 100%;
   z-index: 100;
-  &.light {
-    background-color: white;
-    color: var(--text-color);
-  }
-  &.dark {
-    background-color: transparent;
-    color: white;
-  }
   .nav {
     width: 90%;
     margin: 0 auto;
@@ -35,6 +27,7 @@
 
       & > p {
         margin: 0 1rem;
+        cursor: pointer;
       }
       .spacer {
         flex: 10;
