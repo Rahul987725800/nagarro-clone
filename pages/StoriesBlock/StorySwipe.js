@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import { CSSTransition } from 'react-transition-group';
 import styles from './StorySwipe.module.scss';
@@ -6,9 +6,16 @@ import { mod } from '../../utils';
 function StorySwipe({ items }) {
   const [active, setActive] = useState(0);
   const [swipeType, setSwipeType] = useState('left');
+  const automaticSwipeRef = useRef();
   const [modFunction, setModFunction] = useState({
     mod: mod(0),
   });
+  useEffect(() => {
+    automaticSwipeRef.current = setInterval(() => {
+      setSwipeType('left');
+      nextBlock();
+    }, 4000);
+  }, []);
   const tabs = [
     'CARING',
     'Annual Report 2020',
@@ -17,6 +24,9 @@ function StorySwipe({ items }) {
   ];
   const prevBlock = () => {
     setActive((prevActive) => {
+      setModFunction({
+        mod: mod(prevActive),
+      });
       if (prevActive === 0) {
         return items.length - 1;
       }
@@ -25,6 +35,9 @@ function StorySwipe({ items }) {
   };
   const nextBlock = () => {
     setActive((prevActive) => {
+      setModFunction({
+        mod: mod(prevActive),
+      });
       if (prevActive === items.length - 1) {
         return 0;
       }
@@ -48,10 +61,8 @@ function StorySwipe({ items }) {
     onSwiped: (e) => {
       // console.log('Swiped');
       // console.log(e);
-      // this is called first
-      setModFunction({
-        mod: mod(active),
-      });
+      // this is called before swiped left or swiped right
+      clearInterval(automaticSwipeRef.current);
     },
     trackMouse: true,
   });
@@ -85,6 +96,7 @@ function StorySwipe({ items }) {
               ' '
             )}
             onClick={() => {
+              clearInterval(automaticSwipeRef.current);
               if (i > active) {
                 setSwipeType('left');
               } else if (i < active) {

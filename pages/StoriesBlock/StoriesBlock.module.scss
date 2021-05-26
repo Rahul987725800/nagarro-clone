@@ -1,0 +1,9 @@
+.storiesBlock {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  // important trick to hide horizontal scroll bar
+  .para {
+    height: 100vh;
+  }
+}

@@ -6,19 +6,28 @@ import styles from './CaringBlock.module.scss';
 
 function CaringBlock() {
   const videoRef = useRef();
+
   useEffect(() => {
+    window.addEventListener('scroll', (e) => {
+      const videoPos = videoRef.current.getBoundingClientRect();
+      // console.log(videoPos);
+      if (videoPos.top < 200) {
+        videoRef.current.play();
+      }
+    });
     videoRef.current.addEventListener('ended', function () {
       this.currentTime = 0;
       this.play();
     });
-    videoRef.current.play();
   }, []);
   const deliverFloorRef = useRef();
   const responsibleFloorRef = useRef();
-  const responsibleTopRef = useRef();
   const colleaugesFloorRef = useRef();
+  const colleaugesTopRef = useRef();
   const [responsibleMoving, setResponsibleMoving] = useState(false);
-  const [responsibleReachedFloor, setResponsibleReachedFloor] = useState(false);
+  const [colleaguesMoving, setColleaguesMoving] = useState(false);
+  const [colleaguesReachedFloor, setColleaguesReachedFloor] = useState(false);
+
   return (
     <div className={styles.caringBlock}>
       <div className={styles.firstPart}>
@@ -28,11 +37,16 @@ function CaringBlock() {
             <p>Caring is our superpower.</p>
           </div>
           <div style={{ display: 'flex' }}>
-            <MovableText floorRef={responsibleTopRef}>
+            <MovableText floorRef={colleaugesTopRef}>
               <span
                 className={styles.movable}
                 style={{
-                  visibility: responsibleMoving ? 'hidden' : 'visible',
+                  visibility:
+                    responsibleMoving ||
+                    colleaguesMoving ||
+                    colleaguesReachedFloor
+                      ? 'hidden'
+                      : 'visible',
                 }}
               >
                 it
@@ -84,15 +98,11 @@ function CaringBlock() {
           <MovableText
             floorRef={responsibleFloorRef}
             setMoving={setResponsibleMoving}
-            setReachedFloor={setResponsibleReachedFloor}
           >
-            <span className={styles.movable} ref={responsibleTopRef}>
+            <span className={styles.movable}>
               <span
                 style={{
-                  visibility:
-                    responsibleMoving || responsibleReachedFloor
-                      ? 'visible'
-                      : 'hidden',
+                  visibility: responsibleMoving ? 'visible' : 'hidden',
                 }}
               >
                 it
@@ -135,10 +145,27 @@ function CaringBlock() {
           ref={videoRef}
           src="https://www.nagarro.com/hubfs/NagarroWebsiteRedesign-Aug2020/Assets/Videos/home_careers-1.mp4"
           className={styles.video}
+          muted="muted"
         ></video>
         <div className={styles.firstHalf}>
-          <MovableText floorRef={colleaugesFloorRef}>
-            <div className={styles.movable}>it makes us better colleagues</div>
+          <MovableText
+            floorRef={colleaugesFloorRef}
+            setMoving={setColleaguesMoving}
+            setReachedFloor={setColleaguesReachedFloor}
+          >
+            <div className={styles.movable} ref={colleaugesTopRef}>
+              <span
+                style={{
+                  visibility:
+                    colleaguesMoving || colleaguesReachedFloor
+                      ? 'visible'
+                      : 'hidden',
+                }}
+              >
+                it
+              </span>{' '}
+              makes us better colleagues
+            </div>
           </MovableText>
           <div className={styles.movableFloor} ref={colleaugesFloorRef}>
             it makes us better colleagues

@@ -83,7 +83,14 @@ function Navbar() {
           <div className={styles.logo}>
             {navbarThemeIsLight ? <LogoDarkIcon /> : <LogoIcon />}
           </div>
-
+          <div
+            className={styles.line}
+            style={{
+              backgroundColor: navbarThemeIsLight
+                ? 'var(--color-light-gray)'
+                : 'white',
+            }}
+          ></div>
           <div className={styles.rest}>
             <p {...properties(0)}>industries</p>
 

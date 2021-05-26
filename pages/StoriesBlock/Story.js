@@ -1,5 +1,4 @@
-import React, { useRef } from 'react';
-import { useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styles from './Story.module.scss';
 function Story({
   fadedText,
@@ -16,7 +15,7 @@ function Story({
         this.currentTime = 0;
         this.play();
       });
-      videoRef.current.currentTime = 3;
+      // videoRef.current.currentTime = 3;
       videoRef.current.play();
     }
   }, []);
@@ -27,7 +26,14 @@ function Story({
         backgroundImage: `url(${imageUrl})`,
       }}
     >
-      <video className={styles.video} src={videoUrl} ref={videoRef}></video>
+      {/* to enable (play without interaction)/autoplay by user muted="muted" must be set */}
+      <video
+        className={styles.video}
+        muted="muted"
+        ref={videoRef}
+        src={videoUrl}
+      ></video>
+
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <div className={styles.fadedText}>{fadedText}</div>

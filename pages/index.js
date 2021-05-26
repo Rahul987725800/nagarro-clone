@@ -4,11 +4,10 @@ import ArrowLink from '../components/Shared/ArrowLink';
 import BlogCard from '../components/Shared/BlogCard';
 
 import CustomImage from '../components/Shared/CustomImage';
-import Story from './StoriesBlock/Story';
-import StorySwipe from './StoriesBlock/StorySwipe';
 import VerticalStory from './VerticalStoriesBlock/VerticalStory';
 import styles from './Home.module.scss';
 import CaringBlock from './CaringBlock/CaringBlock';
+import StoriesBlock from './StoriesBlock/StoriesBlock';
 export default function Home() {
   return (
     <div>
@@ -16,37 +15,7 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={styles.storiesBlock}>
-        <StorySwipe
-          items={[
-            <Story
-              fadedText="press release"
-              title="10,000 Nagarrians, 10,000 trees"
-              description="We are planting 10,000 trees to mark the achievement of crossing the 10,000-employee milestone"
-              buttonText="Check it out"
-              imageUrl="https://www.nagarro.com/hubfs/Nagarro-March2018-Theme/Insights-Homepage-images/PR-Nagarrians-Trees-Homepage-Carousel-2.jpg"
-            />,
-            <Story
-              fadedText="annual report"
-              title="A year of transformation for Nagarro SE"
-              buttonText="Learn more"
-              videoUrl="https://www.nagarro.com/hubfs/NagarroWebsiteRedesign-Aug2020/Assets/Videos/Banner_1440x900_loop.mp4?t=1620040821044"
-            />,
-            <Story
-              fadedText="success story"
-              title="A single flight-and-fare search app for Star Alliance's 26 airlines"
-              buttonText="Read the story"
-              imageUrl="https://www.nagarro.com/hubfs/Nagarro-March2018-Theme/Insights-Homepage-images/Star%20Alliance_website_1440x900px.jpg"
-            />,
-            <Story
-              fadedText="press release"
-              title="Re-engineering Adform's advertising platform"
-              buttonText="Learn more"
-              imageUrl="https://www.nagarro.com/hubfs/pexels-fauxels-3184422_lp.jpg"
-            />,
-          ]}
-        />
-      </div>
+      <StoriesBlock />
       <VerticalStory />
       <CaringBlock />
       <div className={styles.insightsBlock}>
@@ -65,30 +34,34 @@ export default function Home() {
       <div className={styles.eventsBlock}>
         <div className={styles.title}>featured events</div>
         <div className={styles.events}>
-          <div className={styles.image}>
-            <CustomImage src="/phone.webp" />
-          </div>
-          <div className={styles.block}>
-            <p className={styles.date}>Virtual Event | May 26</p>
-            <p className={styles.question}>
-              How API management empowers innovation in financial services
-            </p>
-            <p className={styles.sol}>
-              Learn how API-enabled business transformation can help you trigger
-              business growth.
-            </p>
+          <div className={styles.block} style={{ minWidth: '60%' }}>
+            <div className={styles.image}>
+              <CustomImage src="/phone.webp" />
+            </div>
+            <div className={styles.content}>
+              <p className={styles.date}>Virtual Event | May 26</p>
+              <p className={styles.question}>
+                How API management empowers innovation in financial services
+              </p>
+              <p className={styles.sol}>
+                Learn how API-enabled business transformation can help you
+                trigger business growth.
+              </p>
+            </div>
           </div>
           <div className={styles.line}></div>
           <div className={styles.block}>
-            <p className={styles.date}> Webinar | May 18</p>
-            <p className={styles.question}>
-              How to benefit from Advanced Intelligence for Testing
-            </p>
-            <p className={styles.sol}>
-              Understand how to drastically reduce testing effort by using
-              intelligent testing solutions like artificial intelligence &
-              machine learning.
-            </p>
+            <div className={styles.content}>
+              <p className={styles.date}> Webinar | May 18</p>
+              <p className={styles.question}>
+                How to benefit from Advanced Intelligence for Testing
+              </p>
+              <p className={styles.sol}>
+                Understand how to drastically reduce testing effort by using
+                intelligent testing solutions like artificial intelligence &
+                machine learning.
+              </p>
+            </div>
           </div>
         </div>
       </div>

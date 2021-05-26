@@ -35,7 +35,7 @@ function MovableText({
       const ceilTextPos = ceilRef.current.getBoundingClientRect();
       if (
         mustStartMove ||
-        (ceilTextPos.top < 240 && ceilTextPos.top > 220) ||
+        (ceilTextPos.top < 300 && ceilTextPos.top > 200) ||
         (start &&
           window.scrollY - start > 0 &&
           window.scrollY - start < distance)

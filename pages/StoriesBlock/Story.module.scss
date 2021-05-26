@@ -1,6 +1,6 @@
 .container {
   height: 100vh;
-  // background-color: red;
+  background-color: rgb(7, 3, 32);
   // background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -17,13 +17,22 @@
     background-color: rgba($color: #000000, $alpha: 0.4);
     width: 100%;
     height: 100%;
-
+    @keyframes show {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
     .content {
       width: 90%;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      animation: show 1000ms ease backwards;
+      animation-delay: 300ms;
       .fadedText {
         color: var(--color-mid-gray);
         font-size: 1.2rem;
