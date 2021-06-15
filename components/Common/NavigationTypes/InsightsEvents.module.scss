@@ -1,0 +1,45 @@
+.insights {
+  display: flex;
+  padding: 2rem 0;
+  .card {
+    flex: 1;
+    margin-right: 100px;
+  }
+  .rest {
+    flex: 5;
+    display: flex;
+    gap: 40px;
+    .blog {
+      padding-top: 4rem;
+    }
+    .events {
+      .head {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+      .details {
+        background-color: rgb(245, 245, 245);
+        color: var(--text-color-light);
+        padding: 1rem;
+        .date {
+          font-weight: 400;
+          font-size: 0.8rem;
+        }
+        .text {
+          margin: 1rem 0;
+          &:hover {
+            color: var(--color-purple);
+            cursor: pointer;
+          }
+        }
+        .bottom {
+          margin-top: 3rem;
+          &:hover {
+            color: var(--color-purple);
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

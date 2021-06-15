@@ -1,0 +1,11 @@
+.services {
+  display: flex;
+  .card {
+    flex: 2;
+  }
+  .links {
+    flex: 7;
+    margin-left: 8%;
+    height: 60vh;
+  }
+}

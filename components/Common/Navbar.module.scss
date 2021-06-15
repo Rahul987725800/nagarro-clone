@@ -85,8 +85,13 @@
     }
   }
   .modal {
-    background-color: red;
+    background-color: white;
     position: absolute;
     width: 100%;
+    & > div {
+      width: 90%;
+      margin: auto;
+      padding: 50px 0;
+    }
   }
 }

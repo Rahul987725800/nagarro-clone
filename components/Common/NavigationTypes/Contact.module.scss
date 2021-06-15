@@ -1,0 +1,32 @@
+.contact {
+  display: flex;
+  & > div {
+    flex: 1;
+  }
+
+  .head {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+  .purple {
+    font-size: 1.3rem;
+    color: var(--color-purple);
+    width: 60%;
+  }
+  .gray {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    color: var(--text-color-light);
+    width: 60%;
+  }
+  .iconLink {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    svg {
+      height: 20px;
+      width: 20px;
+      fill: var(--color-midnight-blue);
+    }
+  }
+}

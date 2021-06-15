@@ -2,6 +2,7 @@ import { createContext, useState } from 'react';
 export const NavbarStateContext = createContext();
 export const NavbarStateProvider = ({ children }) => {
   const [navbarTheme, setNavbarTheme] = useState('dark');
+  const [navbarRef, setNavbarRef] = useState();
   const toggleNavbarTheme = () => {
     if (navbarTheme === 'light') {
       setNavbarTheme('dark');
@@ -15,6 +16,8 @@ export const NavbarStateProvider = ({ children }) => {
     setNavbarTheme,
     toggleNavbarTheme,
     navbarThemeIsLight: navbarTheme === 'light',
+    navbarRef,
+    setNavbarRef,
   };
   return (
     <NavbarStateContext.Provider value={value}>

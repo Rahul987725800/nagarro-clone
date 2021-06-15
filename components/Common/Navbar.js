@@ -21,9 +21,11 @@ const navTypes = [
   <Contact />,
 ];
 function Navbar() {
-  const { navbarThemeIsLight, setNavbarTheme } = useContext(NavbarStateContext);
+  const navbarRef = useRef();
+  const { navbarThemeIsLight, setNavbarTheme, setNavbarRef } =
+    useContext(NavbarStateContext);
   const [selectingLanguage, setSelectingLanguage] = useState(false);
-  const [activeChild, setActiveChild] = useState();
+  const [activeChild, setActiveChild] = useState(-1);
   const [prevActiveChild, setPrevActiveChild] = useState();
   const [showNavbar, setShowNavbar] = useState(true);
   const [navFixed, setNavFixed] = useState(false);
@@ -52,6 +54,7 @@ function Navbar() {
         setShowNavbar(true);
       }
     };
+    setNavbarRef(navbarRef);
   }, []);
   function Wrapper({ children }) {
     return (
@@ -114,6 +117,7 @@ function Navbar() {
           position: navFixed ? 'fixed' : 'absolute',
           backgroundColor: lightThemeIsActive ? 'white' : 'transparent',
         }}
+        ref={navbarRef}
       >
         <nav className={styles.nav} onClick={() => setSelectingLanguage(false)}>
           <div className={styles.logo}>

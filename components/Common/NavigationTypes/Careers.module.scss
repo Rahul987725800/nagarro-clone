@@ -1,0 +1,49 @@
+.careers {
+  display: flex;
+  align-items: stretch;
+  padding: 2rem 0;
+  .left {
+    width: 40%;
+    .head {
+      font-size: 2rem;
+      margin-bottom: 4rem;
+    }
+  }
+  .line {
+    width: 1px;
+    background-color: gray;
+    margin: 0 5rem;
+  }
+  .right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    .text {
+      font-size: 1.5rem;
+    }
+    .flags {
+      margin-left: 4rem;
+      display: flex;
+      justify-content: space-between;
+      flex: 1;
+      .col {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        p {
+          color: var(--text-color);
+          font-weight: bold;
+          font-size: 0.8rem;
+          &:hover {
+            color: var(--color-purple);
+            cursor: pointer;
+          }
+          img {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}

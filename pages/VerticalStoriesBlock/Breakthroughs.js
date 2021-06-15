@@ -1,21 +1,30 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import styles from './Breakthroughs.module.scss';
 import { useSwipeable } from 'react-swipeable';
 import { CSSTransition } from 'react-transition-group';
 import { mod } from '../../utils';
 import { items } from './data';
+import { NavbarStateContext } from '../../state/navbarState';
 
 function withinRange(val, low, high) {
   return val >= low && val <= high;
 }
+function withinBox(mouse, box) {
+  if (box)
+    return (
+      withinRange(mouse.clientX, box.left, box.left + box.width) &&
+      withinRange(mouse.clientY, box.top, box.top + box.height)
+    );
+}
 function Breakthroughs() {
+  const { navbarRef } = useContext(NavbarStateContext);
+  const seeVideoButtonRef = useRef();
   const breakthroughsRef = useRef();
   const [cursorPosition, setCursorPosition] = useState({
     left: 0,
     right: 0,
   });
   const [showCursor, setShowCursor] = useState(false);
-  const [hoveringButton, setHoveringButton] = useState(false);
 
   const [active, setActive] = useState(0);
   const [swipeType, setSwipeType] = useState('left');
@@ -84,26 +93,17 @@ function Breakthroughs() {
         ref={breakthroughsRef}
         className={styles.breakthroughs}
         onMouseMove={(e) => {
-          if (hoveringButton) {
+          if (
+            withinBox(e, seeVideoButtonRef.current?.getBoundingClientRect()) ||
+            withinBox(e, navbarRef.current?.getBoundingClientRect())
+          ) {
             setShowCursor(false);
             return;
           }
           const breakthroughsPos =
             breakthroughsRef.current.getBoundingClientRect();
-          // console.log(breakthroughsPos);
-          // console.log(e);
-          if (
-            withinRange(
-              e.clientX,
-              breakthroughsPos.left,
-              breakthroughsPos.left + breakthroughsPos.width
-            ) &&
-            withinRange(
-              e.clientY,
-              breakthroughsPos.top,
-              breakthroughsPos.top + breakthroughsPos.height
-            )
-          ) {
+
+          if (withinBox(e, breakthroughsPos)) {
             setShowCursor(true);
             setCursorPosition({
               top: e.clientY,
@@ -113,7 +113,11 @@ function Breakthroughs() {
             setShowCursor(false);
           }
         }}
-        onMouseLeave={() => setShowCursor(false)}
+        onMouseLeave={() => {
+          setShowCursor(false);
+          // console.log('mouse leave');
+        }}
+
         // makes sure when we move from screen cursor is not shown
       >
         {showCursor && (
@@ -170,11 +174,7 @@ function Breakthroughs() {
                     <p className={styles.head}>{head}</p>
                     <p className={styles.help}>How we helped</p>
                     <p className={styles.info}>{info}</p>
-                    <span
-                      className={styles.button}
-                      onMouseEnter={() => setHoveringButton(true)}
-                      onMouseLeave={() => setHoveringButton(false)}
-                    >
+                    <span className={styles.button} ref={seeVideoButtonRef}>
                       See the video
                     </span>
                   </div>

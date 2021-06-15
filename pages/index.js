@@ -3,7 +3,6 @@ import Head from 'next/head';
 import ArrowLink from '../components/Shared/ArrowLink';
 import BlogCard from '../components/Shared/BlogCard';
 
-import CustomImage from '../components/Shared/CustomImage';
 import VerticalStory from './VerticalStoriesBlock/VerticalStory';
 import styles from './Home.module.scss';
 import CaringBlock from './CaringBlock/CaringBlock';

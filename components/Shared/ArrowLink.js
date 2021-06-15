@@ -1,35 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './ArrowLink.module.scss';
-function ArrowLink({
-  children,
-  width,
-  hoveredWidth,
-  dark,
-  arrowPadding = '3rem',
-}) {
+function ArrowLink({ children, dark, marginTopArrow = 0 }) {
+  const textRef = useRef();
   const [hovered, setHovered] = useState(false);
+  const [width, setWidth] = useState(0);
+  useEffect(() => {
+    const textPos = textRef.current.getBoundingClientRect();
+    setWidth(textPos.width);
+  }, []);
   return (
-    <div
-      className={styles.link}
+    <span
+      className={[styles.link, dark ? styles.dark : styles.light].join(' ')}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div
-        className={[styles.text, dark ? styles.dark : styles.light].join(' ')}
-      >
+      <span className={styles.text} ref={textRef}>
         {children}
-      </div>
+      </span>
 
-      <div
+      <span
         className={styles.image}
         style={{
-          width: hovered ? hoveredWidth : width + 'px',
-          paddingLeft: arrowPadding,
+          width: hovered ? width + 20 : width + 'px',
+          marginLeft: (width * 15) / 100 + 'px',
+          marginTop: marginTopArrow + 'px',
         }}
       >
         <img src="/arrow-stick.svg" alt="" />
-      </div>
-    </div>
+      </span>
+    </span>
   );
 }
 

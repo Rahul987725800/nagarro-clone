@@ -134,7 +134,7 @@ function CaringBlock() {
             />
           </div>
           <div className={styles.link}>
-            <ArrowLink width={350} hoveredWidth={370}>
+            <ArrowLink marginTopArrow={2}>
               discover how we're creating a better world
             </ArrowLink>
           </div>
