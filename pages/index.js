@@ -1,12 +1,10 @@
-import Head from 'next/head';
-
 import ArrowLink from '../components/Shared/ArrowLink';
 import BlogCard from '../components/Shared/BlogCard';
 
-import VerticalStory from './VerticalStoriesBlock/VerticalStory';
+import VerticalStory from '../components/VerticalStoriesBlock/VerticalStory';
 import styles from './Home.module.scss';
-import CaringBlock from './CaringBlock/CaringBlock';
-import StoriesBlock from './StoriesBlock/StoriesBlock';
+import CaringBlock from '../components/CaringBlock/CaringBlock';
+import StoriesBlock from '../components/StoriesBlock/StoriesBlock';
 export default function Home() {
   return (
     <div>

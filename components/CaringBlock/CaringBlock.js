@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import ArrowLink from '../../components/Shared/ArrowLink';
-import CustomImage from '../../components/Shared/CustomImage';
-import MovableText from '../../components/Shared/MovableText';
+import ArrowLink from '../Shared/ArrowLink';
+import CustomImage from '../Shared/CustomImage';
+import MovableText from '../Shared/MovableText';
 import styles from './CaringBlock.module.scss';
 
 function CaringBlock() {
